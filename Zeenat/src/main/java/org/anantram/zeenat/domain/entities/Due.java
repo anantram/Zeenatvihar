@@ -1,7 +1,10 @@
-package org.anantram.zeenat.domain;
+package org.anantram.zeenat.domain.entities;
 import java.time.Month;
+import java.time.Year;
 
 import javax.persistence.*;
+
+import org.anantram.zeenat.domain.convertors.YearAttributeConverter;
 
 import lombok.*;
 
@@ -16,12 +19,11 @@ public class Due{
 	@GeneratedValue
 	private Long Id;
 	private Month dueMonth;
+	
+	@Convert(converter = YearAttributeConverter.class)
+	private Year dueYear;
 	private double dueAmount;
 	private double fine;
-	private boolean paid;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	private Account accountId;
 	
 }
 

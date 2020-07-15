@@ -1,7 +1,4 @@
-package org.anantram.zeenat.domain;
-
-import java.time.Month;
-import java.util.List;
+package org.anantram.zeenat.domain.entities;
 
 import javax.persistence.*;
 
@@ -20,6 +17,11 @@ public class Account {
 	private Long id;
 	
 	private String flatNumber;
+	
+	public Account(String flatNumber)
+	{
+		this.flatNumber = flatNumber;
+	}
 
 
 }
