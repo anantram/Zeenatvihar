@@ -1,5 +1,7 @@
 package org.anantram.zeenat.repository;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
 
 import org.anantram.zeenat.domain.DueDetails;
@@ -32,6 +34,15 @@ public interface AccDueRlshpRepo extends CrudRepository<AccountDueRelationship, 
 			+ "and a.flatNumber = :flatNumber "
 			+ "and adr.paidOn is NULL")
 	double gettotalDue(@Param("flatNumber") final String flatNumber);
+	
+	@Query("select adr.id from Account a, Due d, AccountDueRelationship adr " 
+			+ "where adr.account = a.id "
+			+ "and adr.due = d.Id "
+			+ "and a.flatNumber = :flatNumber "
+			+ "and adr.paidOn is NULL "
+			+ "and d.dueYear = :dueYear "
+			+ "and d.dueMonth = :dueMonth")
+	Long getaccountDueId(@Param("flatNumber") final String flatNumber, @Param("dueMonth") final Month dueMonth, @Param("dueYear") final Year dueYear);
 	
 	
 }

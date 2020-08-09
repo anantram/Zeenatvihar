@@ -4,7 +4,7 @@ import java.time.Year;
 
 import javax.persistence.*;
 
-import org.anantram.zeenat.domain.convertors.YearAttributeConverter;
+import org.anantram.zeenat.domain.Converters.YearAttributeConverter;
 
 import lombok.*;
 
@@ -14,6 +14,7 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 @Entity
+@Table (uniqueConstraints= @UniqueConstraint(columnNames={"dueMonth", "dueYear"}))
 public class Due{
 	@Id
 	@GeneratedValue

@@ -1,4 +1,4 @@
-package org.anantram.zeenat.domain.convertors;
+package org.anantram.zeenat.domain.Converters;
 
 import java.time.Year;
 
