@@ -4,7 +4,7 @@ import java.time.Year;
 
 import javax.persistence.*;
 
-import org.anantram.zeenat.domain.Converters.YearAttributeConverter;
+import org.anantram.zeenat.converters.YearAttributeConverter;
 
 import lombok.*;
 

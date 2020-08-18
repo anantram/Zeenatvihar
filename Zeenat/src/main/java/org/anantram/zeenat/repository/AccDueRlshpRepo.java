@@ -4,8 +4,8 @@ import java.time.Month;
 import java.time.Year;
 import java.util.List;
 
-import org.anantram.zeenat.domain.DueDetails;
 import org.anantram.zeenat.domain.entities.AccountDueRelationship;
+import org.anantram.zeenat.domain.objects.DueDetails;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

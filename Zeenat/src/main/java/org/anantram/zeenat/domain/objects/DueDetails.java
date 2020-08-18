@@ -1,4 +1,4 @@
-package org.anantram.zeenat.domain;
+package org.anantram.zeenat.domain.objects;
 
 import java.util.Date;
 import java.time.Month;

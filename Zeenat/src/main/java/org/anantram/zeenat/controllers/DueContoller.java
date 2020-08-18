@@ -1,7 +1,7 @@
 package org.anantram.zeenat.controllers;
 
-import org.anantram.zeenat.domain.DueDetails;
 import org.anantram.zeenat.domain.entities.Due;
+import org.anantram.zeenat.domain.objects.DueDetails;
 import org.anantram.zeenat.services.DueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

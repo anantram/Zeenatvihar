@@ -9,10 +9,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import org.anantram.zeenat.domain.DueDetails;
 import org.anantram.zeenat.domain.entities.Account;
 import org.anantram.zeenat.domain.entities.AccountDueRelationship;
 import org.anantram.zeenat.domain.entities.Due;
+import org.anantram.zeenat.domain.objects.DueDetails;
 import org.anantram.zeenat.repository.AccDueRlshpRepo;
 import org.anantram.zeenat.repository.AccountRepo;
 import org.anantram.zeenat.repository.DueRepo;
