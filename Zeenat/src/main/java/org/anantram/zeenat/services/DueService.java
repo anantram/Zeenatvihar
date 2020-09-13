@@ -13,6 +13,7 @@ import org.anantram.zeenat.domain.entities.Account;
 import org.anantram.zeenat.domain.entities.AccountDueRelationship;
 import org.anantram.zeenat.domain.entities.Due;
 import org.anantram.zeenat.domain.objects.DueDetails;
+import org.anantram.zeenat.domain.projections.DueDetail;
 import org.anantram.zeenat.repository.AccDueRlshpRepo;
 import org.anantram.zeenat.repository.AccountRepo;
 import org.anantram.zeenat.repository.DueRepo;
@@ -56,18 +57,20 @@ public class DueService {
 	 * get list of all pending dues;
 	 * @return
 	 */
-	public List<DueDetails> getDues()
+	public List<DueDetail> getDues()
 	{
-		return adr.getDueDetails();
+		
+		return adr.findByPaidOnIsNull();
 	}
 	
 	/**
 	 * get list of all pending dues;
 	 * @return
 	 */
-	public List<DueDetails> getDues(String flatNumber)
+	public List<DueDetail> getDues(String flatNumber)
 	{
-		return adr.getDueDetails(flatNumber);
+		//return adr.getDueDetails(flatNumber);
+		return adr.findByAccountFlatNumberAndPaidOnIsNull(flatNumber);
 	}
 	
 	/**
@@ -89,29 +92,33 @@ public class DueService {
 	 */
 	public String payDue(final String flatNumber,final String dueMonth,int dueYear)
 	{
-		Long aa = adr.getaccountDueId(flatNumber, 
+		//Long aa = adr.getaccountDueId(flatNumber, 
+				//Month.valueOf(dueMonth.toUpperCase()),
+				//Year.of(dueYear));
+		
+		//if (aa == null) {
+			//return "There is no record for  Flat number: "						
+				//+ flatNumber
+				//+ ", Due Month: "		
+				//+ dueMonth
+				//+ ", Due Year: "
+				//+ dueYear;
+		//}
+		AccountDueRelationship abcd = adr.findByAccountFlatNumberAndDueDueMonthAndDueDueYear(flatNumber,
 				Month.valueOf(dueMonth.toUpperCase()),
 				Year.of(dueYear));
-		
-		if (aa == null) {
-			return "There is no record for  Flat number: "						
-				+ flatNumber
-				+ ", Due Month: "		
-				+ dueMonth
-				+ ", Due Year: "
-				+ dueYear;
-		}
-		AccountDueRelationship abcd = adr.findById(aa).orElseThrow(null);
-			abcd.setPaidOn(new Date());
+		//AccountDueRelationship abcd = adr.findById(aa).orElseThrow(null);
+		abcd.setPaidOn(new Date());
 			adr.save(abcd);
-			
+		
+		
+		
 			return "Successfully Paid";
 	}
 	
 	public String updateDue(final String dueMonth,int dueYear, double amount)
 	{
-		List<Due> ss = dr.findFirst1ByDueMonthAndDueYear(Month.valueOf(dueMonth.toUpperCase()), Year.of((dueYear)));
-		Due a = ss.get(0);
+		Due a = dr.findByDueMonthAndDueYear(Month.valueOf(dueMonth.toUpperCase()), Year.of((dueYear)));
 		a.setDueAmount(amount);
 		dr.save(a);
 		return "Due of " + dueMonth + " " + dueYear + " has been sucessfully updated to: " + amount;  

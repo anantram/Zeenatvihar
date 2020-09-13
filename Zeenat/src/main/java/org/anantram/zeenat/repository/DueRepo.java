@@ -9,5 +9,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface DueRepo extends CrudRepository<Due, Long> {
 
-	List<Due> findFirst1ByDueMonthAndDueYear(Month dueMonth, Year dueYear);
+	Due findByDueMonthAndDueYear(Month dueMonth, Year dueYear);
 }

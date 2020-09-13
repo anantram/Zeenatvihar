@@ -1,7 +1,7 @@
 package org.anantram.zeenat.controllers;
 
 import org.anantram.zeenat.domain.entities.Due;
-import org.anantram.zeenat.domain.objects.DueDetails;
+import org.anantram.zeenat.domain.projections.DueDetail;
 import org.anantram.zeenat.services.DueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +43,7 @@ public class DueContoller {
 	}
 	  
 	@GetMapping(path="/getDues")
-	public @ResponseBody Iterable<DueDetails> 
+	public @ResponseBody Iterable<DueDetail> 
 		getDues() {
 			return ds.getDues();
 		}
@@ -54,7 +54,7 @@ public class DueContoller {
 	 * @return
 	 */
 	@GetMapping(path="/getDues/{fNumber}")
-	public @ResponseBody Iterable<DueDetails> 
+	public @ResponseBody Iterable<DueDetail> 
 		getDues(@PathVariable("fNumber") String flatNumber) {
 			return ds.getDues(flatNumber);
 		}
